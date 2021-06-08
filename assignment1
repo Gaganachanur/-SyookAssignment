@@ -137,20 +137,20 @@ console.log(syookM1(0));
 
 function syookH1(n, k, g, b)
 {
-    if(g === 0 || b=== 0 )return []
+    if(g === 0 || b=== 0 )return []          // if green and black are not there he have to drink one continuesly drink green or black consition fails 
 
     let chai = [];
      for(let i=0;i<n ;i++)
      {
          if(g !== 0 ) {
-             chai[i] = "green";
+             chai[i] = "green";                          // fill out the green pattern of drinking
              i = i + k;
              g--
          }
      }
     for(let j= 0 ; j< n ;j++)
     {
-        if(b!== 0 && chai[j] !== "green")
+        if(b!== 0 && chai[j] !== "green")             // fill up the left out slot with black
         {
             chai[j] = "black";
             b--
