@@ -31,3 +31,144 @@ function syookE1(g)
 }
 console.log(syookE1(6));
 console.log(syookE1(12));
+
+------------------------------------------------------------------------------------------------------------------------------------
+// Take a positive integer x. If x is even, divide x by 2 to get x / 2. If x is odd, multiply x by 3 and
+// add 1 to get 3x + 1. Repeat the process indefinitely. No matter which number you start with, you
+// will always reach 1 eventually during the process.
+//     Given a number x, return the number of steps required to reach 1.
+// Examples
+// Starting with x = 12, the steps would be as follows:
+// 12 - even (divide by 2)
+// 6 - even (divide by 2)
+// 3 - odd (3(3) + 1)
+// 10 - even (divide by 2)
+// 5 - odd (3(5) + 1)
+// 16 - even (divide by 2)
+// 8 - even (divide by 2)
+// 4 - even (divide by 2)
+// 2 - even (divide by 2)
+// 1 - stop
+// We got to 1 in 9 steps. So for input x = 12, the return value would be 9.
+
+function syookE2(val,steps) {
+    if(val === 0)return 0;
+    if(val === 1)return steps;
+
+     if( val %2 ===1)
+     {
+         val = (val * 3)+ 1;
+         steps += 1;
+     }else{
+         val = (val /2);
+         steps += 1;
+     }
+ return syookE2(val,steps)
+}
+
+console.log(`The number steps taken are = ${syookE2(12,0)}`);
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+// 2) HIde that PIN!
+
+function syookM1(pin)
+{
+    let i=0;
+    let g=0;
+    let database=[];    //global variables
+    let encryptedText = [];
+
+    while (pin != 0 )             // converting pin into binary digits
+    {
+      database[i++]=  pin%2
+        pin=Math.floor(pin/2)
+    }
+
+    console.log(database)
+
+    for(let i=0;i<database.length;i++)
+    {
+        if(1 === database[i])
+        {
+            encrypt(i)
+        }
+    }
+   function encrypt(key)            // matching the key and passing the element into Array
+   {
+
+       if(key == 0)
+       {
+           encryptedText[g++] ="pop";
+       }else if(key == 1)
+       {
+           encryptedText[g++] ="double rip"
+       }else if(key == 2)
+       {
+           encryptedText[g++] = "hide your mints"
+       }else if(key ==3)
+       {
+           encryptedText[g++] = "fall"
+       }else{
+           encryptedText[g++] = "reverse the order of the output"
+       }
+   }
+   return encryptedText;
+}
+
+console.log(syookM1(3));
+console.log(syookM1(19));
+console.log(syookM1(0));
+--------------------------------------------------------------------------------------------------------------------------------
+
+// 2) n-Chai!
+// You like chai very much and you want to drink exactly “n” cups of chai. You would be happy to
+// drink more but you have exactly “n” chai bags, “g” of them are green, and “b” are black.
+//     You would not like to drink the same chai (green or black) more than “k” times in a row.
+//     Your task is to determine the order of making tea so that you will be able to drink “n” cups of tea,
+//     without drinking the same chai more than “k” times in a row, or to inform that it is impossible to
+// do that with the given inputs. Each chai bag can be used exactly once.
+//     Note: g + b is always equal to “n”. I.e number of green and black chai bags total is always equal
+// to the number of times you want to drink chai.
+//     Example:
+// Input -> n: 5, k: 1, g: 3, b: 2
+// Output -> [“Green”,”Black”,”Green”,”Black”,”Green”]
+// Input -> n: 4, k: 3, g: 4, b: 0
+// Output -> []
+
+function syookH1(n, k, g, b)
+{
+    if(g === 0 || b=== 0 )return []
+
+    let chai = [];
+     for(let i=0;i<n ;i++)
+     {
+         if(g !== 0 ) {
+             chai[i] = "green";
+             i = i + k;
+             g--
+         }
+     }
+    for(let j= 0 ; j< n ;j++)
+    {
+        if(b!== 0 && chai[j] !== "green")
+        {
+            chai[j] = "black";
+            b--
+        }
+    }
+
+return chai;
+
+}
+let n=5;
+let k=1;
+let g=3;
+let b=2;
+console.log(syookH1(n, k, g, b))
+// let n=4;
+// let k=3;
+// let g=4;
+// let b=0;
+// console.log(syookH1(n, k, g, b))
+
+
